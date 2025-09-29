@@ -65,10 +65,16 @@ def create_chat_template(
     conv: list[dict[str,str]] = []
 
     if system_prompt is not None:
-        conv.append({"system": system_prompt})
+        conv.append({
+            "role": "system",
+            "content": system_prompt
+        })
 
     if user_prompt is not None:
-        conv.append({"user": user_prompt})
+        conv.append({
+            "role": "user",
+            "content": user_prompt
+        })
 
     if history is not None:
         return history.append(conv)
