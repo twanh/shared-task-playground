@@ -1,0 +1,10 @@
+Analyze the following syllogism and determine if it is logically valid or invalid.
+
+A syllogism is valid if the conclusion necessarily follows from the premises using formal logic rules, regardless of real-world knowledge.
+
+Return your answer as a JSON object with:
+- "validity": true or false
+- "explanation": brief explanation (max 25 words)
+
+Example format:
+{"validity": true, "explanation": "Valid by universal instantiation"}
