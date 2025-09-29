@@ -132,8 +132,14 @@ def parse_output(output: str) -> bool:
     resp = json.loads(output)
     return resp.get('validity', None)
 
-class ResultRow(DataRow):
+class ResultRow(NamedTuple):
+
+    id_: str
+    syllogism: str
+    validity: bool
+    plausibility: bool
     predicted_validity: bool|None = None
+
 
 def main():
 
