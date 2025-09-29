@@ -4,6 +4,15 @@ from vllm import LLM, SamplingParams
 
 PROMPTS_DIR = './prompts/'
 
+def print_outputs(outputs):
+    print("\nGenerated Outputs:\n" + "-" * 80)
+    for output in outputs:
+        prompt = output.prompt
+        generated_text = output.outputs[0].text
+        print(f"Prompt: {prompt!r}\n")
+        print(f"Generated text: {generated_text!r}")
+        print("-" * 80)
+
 
 def create_argparser() -> argparse.Namespace:
 
@@ -44,6 +53,9 @@ def create_prompt(
     return formated_prompt
 
 
+
+
+
 def create_chat_template(
     system_prompt: str|None,
     user_prompt: str|None,
@@ -74,8 +86,14 @@ def main():
         system_prompt = create_prompt(args.system_prompt)
     user_prompt = create_prompt(args.prompt, syllogism="test syllo")
 
-    chat = create_chat_template(system_prompt, user_prompt)
-    print(chat)
+
+    llm = LLM(model="meta-llama/Meta-Llama-3-8B-Instruct")
+
+    conversation = create_chat_template(system_prompt, user_prompt)
+
+    outputs = llm.chat(conversation, use_tqdm=True)
+
+    print_outputs(outputs)
 
 
 if __name__ == "__main__":
