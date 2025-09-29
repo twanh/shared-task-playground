@@ -21,7 +21,7 @@ def create_argparser() -> argparse.Namespace:
     parser.add_argument(
         '--model',
         help="Model name",
-        default="meta-llama/Meta-Llama-3-8B-Instruct"
+        default="meta-llama/Meta-Llama-3-20B-Instruct"
     )
 
 
@@ -87,7 +87,7 @@ def main():
     user_prompt = create_prompt(args.prompt, syllogism="test syllo")
 
 
-    llm = LLM(model="meta-llama/Meta-Llama-3-8B-Instruct")
+    llm = LLM(model=args.model)
 
     conversation = create_chat_template(system_prompt, user_prompt)
 

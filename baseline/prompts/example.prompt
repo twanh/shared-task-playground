@@ -1,0 +1,16 @@
+This is a test promot
+
+
+Tell me wether this syllogism is valid or not:
+
+{syllogism}
+
+Return it as the following json:
+
+```
+{{
+  "valid": [boolean]
+}}
+```
+
+The key `valid` should indicate wether the syllogism is valid or not.
