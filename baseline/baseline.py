@@ -154,7 +154,7 @@ def main():
     correct = 0
     total = 0
 
-    for row in data:
+    for i, row in enumerate(data):
         user_prompt = create_prompt(
             args.prompt,
             syllogism=row.syllogism,
@@ -172,7 +172,7 @@ def main():
         #    sampling_params=sampling_params
         )
 
-
+        print(f'=== Data row {i+1}/{len(data)} ===')
         print(f"Data row ID: {row.id_}")
         print(f"Syllogism: {row.syllogism}")
         print(f"Validity: {row.validity}")
@@ -181,7 +181,6 @@ def main():
 
         result = parse_output(outputs[0].outputs[0].text)
         print(f"Predicted validity: {result}")
-        print("-" * 80)
 
         result_row = ResultRow(
             id_=row.id_,
